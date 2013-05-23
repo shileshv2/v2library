@@ -30,7 +30,8 @@
   <div class="control-group">
     <%= f.label :user_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :user_id, :value => current_user.employee_id, :class => 'number_field' %>
+      <%#= f.text_field :user_id, :value => current_user.employee_id, :class => 'number_field' %>
+      <%= f.text_field :user_id,:class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
@@ -43,7 +44,7 @@
   <div class="control-group">
     <%= f.label :transaction_date, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :transaction_date, :class => 'datetime_select', :placeholder => "type transaction date" %>
+      <%= f.text_field :transaction_date, :class => 'datetime_select',:value => (@transaction.transaction_date.strftime("%d/%m/%Y")  if @transaction.transaction_date), :placeholder => "type transaction date" %>
     </div>
   </div>
 

@@ -19,16 +19,20 @@
 
 $(document).ready(function() {
  	$(function() {
-    	 $("#book_purchased_at").datepicker({
-       			changeMonth: true,
-       			changeYear: true
-     	  });
-   	});
+    	 $("#book_purchased_at").datepicker(
+       {dateFormat : 'dd/mm/yy',
+       minDate: '-1m', maxDate: "+0d" , 
+       changeMonth: true, 
+       changeYear: true}
+)
+  });
 
    	$(function() {
-    	 $("#transaction_transaction_date").datepicker({
-       			changeMonth: true,
-       			changeYear: true
-     	  });
+    	 $("#transaction_transaction_date").datepicker(
+       			{dateFormat : 'dd/mm/yy',
+       minDate: '-od', maxDate: "+0d" , 
+       changeMonth: true, 
+       changeYear: true}
+)
    	});
  });
