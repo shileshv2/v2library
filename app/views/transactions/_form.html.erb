@@ -1,0 +1,55 @@
+<%#= raise params[:book_id].inspect %>
+<%= form_for @transaction, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :book_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :book_id, :value => params[:book_id],:class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :employee_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :employee, :class => 'number_field',:placeholder => "type employee id" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :employee_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :employee_name, :class => 'text_field', :placeholder => "type employee name" %>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label :employee_email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :employee_email, :class => 'text_field', :placeholder => "type employee email" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :user_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :user_id, :value => current_user.employee_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :transaction_type, :class => 'control-label' %>
+    <div class="controls">
+      <%#= f.number_field :transaction_type, :class => 'number_field' %>
+      <%= f.select :transaction_type,Transaction::TRANSACTION_TYPE, :prompt => "select transaction type" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :transaction_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :transaction_date, :class => 'datetime_select', :placeholder => "type transaction date" %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                transactions_path, :class => 'btn' %>
+  </div>
+<% end %>

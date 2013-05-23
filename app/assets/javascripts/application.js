@@ -12,4 +12,23 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require twitter/bootstrap
 //= require_tree .
+
+
+$(document).ready(function() {
+ 	$(function() {
+    	 $("#book_purchased_at").datepicker({
+       			changeMonth: true,
+       			changeYear: true
+     	  });
+   	});
+
+   	$(function() {
+    	 $("#transaction_transaction_date").datepicker({
+       			changeMonth: true,
+       			changeYear: true
+     	  });
+   	});
+ });

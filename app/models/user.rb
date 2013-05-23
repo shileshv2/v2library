@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
   validates	:location_id, :presence => true
   # attr_accessible :title, :body
   belongs_to :location
+  has_many   :transactions
 end

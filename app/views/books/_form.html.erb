@@ -1,3 +1,4 @@
+
 <%= form_for @book, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
@@ -14,13 +15,13 @@
   <div class="control-group">
     <%= f.label :location_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :location_id, :class => 'number_field',:placeholder => "type location id" %>
+      <%= f.collection_select :location_id, Location.all, :id, :name %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :user_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :user_id, :class => 'number_field',:placeholder => "type user id" %>
+      <%= f.text_field :user_id, :value => current_user.employee_id,:class => 'number_field',:placeholder => "type user id" %>
     </div>
   </div>
   <div class="control-group">
@@ -53,18 +54,29 @@
       <%= f.text_field :price, :class => 'text_field',:placeholder => "type price" %>
     </div>
   </div>
-  <div class="control-group">
+  <!-- <div class="control-group">
     <%= f.label :status, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :status, :class => 'number_field' ,:placeholder => "type status" %>
+      <%= f.text_field :status, :value => Book::STATUS[:in],:class => 'number_field' ,:placeholder => "type status" %>
+      <%#= f.select :status,Book::STATUS %>
+
+
     </div>
   </div>
-  <div class="control-group">
+ -->  <div class="control-group">
     <%= f.label :purchased_at, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :purchased_at, :class => 'datetime_select' ,:placeholder => "type purchased date" %>
     </div>
   </div>
+
+  <div class="control-group">
+    <%= f.label :tag_list,"Tags (seperated by commas)", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :tag_list, :class => 'text_field' ,:placeholder => "type tag name" %>
+    </div>
+  </div>
+
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
