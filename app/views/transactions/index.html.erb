@@ -44,3 +44,5 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_transaction_path,
             :class => 'btn btn-primary' %>
+
+ <%= paginate @transactions %>

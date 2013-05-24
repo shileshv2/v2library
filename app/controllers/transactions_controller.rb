@@ -2,8 +2,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all
-
+    @transactions = Transaction.page(params[:page]).per(1) 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @transactions }
@@ -14,7 +13,6 @@ class TransactionsController < ApplicationController
   # GET /transactions/1.json
   def show
     @transaction = Transaction.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @transaction }

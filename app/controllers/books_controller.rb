@@ -1,9 +1,14 @@
 class BooksController < ApplicationController
   # GET /books
   # GET /books.json
+  
   def index
-    #@books = Book.all
     @books = Book.search(params[:search])
+    if @books.class == Array
+      @books = Kaminari.paginate_array(@books).page(params[:page]).per(5) 
+    else
+      @books = @books.page(params[:page]).per(5) 
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @books }

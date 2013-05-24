@@ -1,4 +1,3 @@
-<%#= raise params[:book_id].inspect %>
 <%= form_for @transaction, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :book_id, :class => 'control-label' %>
@@ -30,8 +29,7 @@
   <div class="control-group">
     <%= f.label :user_id, :class => 'control-label' %>
     <div class="controls">
-      <%#= f.text_field :user_id, :value => current_user.employee_id, :class => 'number_field' %>
-      <%= f.text_field :user_id,:class => 'number_field' %>
+      <%= f.text_field :user_id, :value => current_user.employee, :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">

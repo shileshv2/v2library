@@ -41,7 +41,9 @@ end
      end
   end
 
- def change_status
+  # method that update the status when new book added 
+  def change_status
+    #raise params.inspect
     self.update_attribute(:status, Book::STATUS[:in])
   end 
 

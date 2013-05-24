@@ -1,20 +1,5 @@
 
 <%= form_for @book, :html => { :class => 'form-horizontal' } do |f| %>
-
-<!-- 
-# <% if @book.errors.any? %>
-#     <div id="error_explanation">
-#       <h2><%= pluralize(@book.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-#       <ul>
-#       <% @book.errors.full_messages.each do |msg| %>
-#         <li><%= msg %></li>
-#       <% end %>
-#       </ul>
-#     </div>
-#   <% end %>
-   -->
-
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
     <div class="controls">
@@ -36,8 +21,7 @@
   <div class="control-group">
     <%= f.label :user_id, :class => 'control-label' %>
     <div class="controls">
-      <%#= f.text_field :user_id, :value => current_user.employee_id,:class => 'number_field',:placeholder => "type user id" %>
-      <%= f.text_field :user_id, :class => 'number_field',:placeholder => "type user id" %>
+      <%= f.text_field :user_id, :value => current_user.employee,:class => 'number_field',:placeholder => "type user id" %>
     </div>
   </div>
   <div class="control-group">
@@ -70,16 +54,8 @@
       <%= f.text_field :price, :class => 'text_field',:placeholder => "type price" %>
     </div>
   </div>
-  <!-- <div class="control-group">
-    <%= f.label :status, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :status, :value => Book::STATUS[:in],:class => 'number_field' ,:placeholder => "type status" %>
-      <%#= f.select :status,Book::STATUS %>
 
-
-    </div>
-  </div>
- -->  <div class="control-group">
+  <div class="control-group">
     <%= f.label :purchased_at, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :purchased_at, :class => 'datetime_select' ,:value => (@book.purchased_at.strftime("%d/%m/%Y")  if @book.purchased_at),:placeholder => "type purchased date" %>
