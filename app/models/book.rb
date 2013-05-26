@@ -7,17 +7,17 @@ class Book < ActiveRecord::Base
   has_many :taggings
   has_many :tags, through:  :taggings
   has_many :transactions
-  
-  validates :title, :presence => true, :format => { :with => /^(?:[^\W_]|\s)*$/u }, :allow_blank => true
+
+  #validates :title, :presence => true, :format => { :with => /^(?:[^\W_]|\s)*$/u }, :allow_blank => true
      
-  validates :author, :presence => true, :format => { :with => /[A-Za-z]+/, :message => " is invalid , Only letters are allowed" } , :allow_blank => true
+  #validates :author, :presence => true, :format => { :with => /[A-Za-z]+/, :message => " is invalid , Only letters are allowed" } , :allow_blank => true
   
-  validates :edition, :presence => true,  :format => { :with => /^(?:[^\W_]|\s)*$/u }, :allow_blank => true
+  #validates :edition, :presence => true,  :format => { :with => /^(?:[^\W_]|\s)*$/u }, :allow_blank => true
   
-  validates :isbn,  :presence => true,:numericality => true, :uniqueness => true, :allow_blank => true
-  validates :publisher, :presence => true, :format => { :with => /[A-Za-z]+/, :message => " is invalid , Only letters  are allowed" }, :allow_blank => true
-  validates :price, :presence => true 
-  validates :purchased_at, :presence => true
+  #validates :isbn,  :presence => true,:numericality => true, :uniqueness => true, :allow_blank => true
+  #validates :publisher, :presence => true, :format => { :with => /[A-Za-z]+/, :message => " is invalid , Only letters  are allowed" }, :allow_blank => true
+  #validates :price, :presence => true 
+  #validates :purchased_at, :presence => true
 
   ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
   if html_tag =~ /\<label/
@@ -32,18 +32,27 @@ end
 
   STATUS = { :in => 1, :out => 2, :not_available => 3 }
 
-    
-  def self.search(search)
-    if search
-       @books = Book.find(:all, :conditions => ["title LIKE ?","%#{search}%" ])
-     else
-       @book = Book.all
-     end
-  end
+  
+  # def self.import(file)
+  #   CSV.foreach(file.path, headers: true) do |row|
+  #     Book.create! row.to_hash
+  #    end
+  # end
+  
+  # def self.search(search)
+  #   if search
+  #      @books = Book.find(:all, :conditions => ["title LIKE ?","%#{search}%" ])
+  #    else
+  #      @book = Book.all
+  #    end
+  # end
+
+  searchable do  
+    text :title, :author, :publisher  
+  end  
 
   # method that update the status when new book added 
   def change_status
-    #raise params.inspect
     self.update_attribute(:status, Book::STATUS[:in])
   end 
 

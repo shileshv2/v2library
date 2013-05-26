@@ -12,21 +12,27 @@
       <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%= model_class.human_attribute_name(:transaction_type) %></th>
       <th><%= model_class.human_attribute_name(:transaction_date) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @transactions.each do |transaction| %>
       <tr class="success">
-        <td><%= link_to transaction.id, transaction_path(transaction) %></td>
-        <td><%= transaction.book_id %></td>
-        <td><%= transaction.employee %></td>
-        <td><%= transaction.employee_email %></td>
-        <td><%= transaction.user_id %></td>
-        <td><%= Transaction::TRANSACTION_TYPE.index(transaction.transaction_type) %></td>
-        <td><%= transaction.transaction_date %></td>
-        <td><%=l transaction.created_at %></td>
+        <td><span class="badge"><%= link_to transaction.id, transaction_path(transaction) %></span></td>
+        <td><%= transaction.book.title rescue "not available"%></td>
+        <td><%= transaction.employee rescue "not available" %></td>
+        <td><%= transaction.employee_email  rescue "not available"%></td>
+        <td><%= transaction.user_id  rescue "not available"%></td>
+
+         <% if transaction.transaction_type == Transaction::TRANSACTION_TYPE[:issue] %>
+        <td><span class="label label-success">
+          <%= Transaction::TRANSACTION_TYPE.index(transaction.transaction_type) %></span></td>
+        <% else %>
+        <td><span class="label label-important">
+          <%= Transaction::TRANSACTION_TYPE.index(transaction.transaction_type) %></span></td>
+        <% end %>
+
+        <td><%= transaction.transaction_date.strftime("%b %d, %Y")  rescue "not available"%></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_transaction_path(transaction), :class => 'btn btn-mini' %>

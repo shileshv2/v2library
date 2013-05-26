@@ -11,6 +11,8 @@ gem 'therubyracer'
 gem 'less-rails'
 gem 'devise'
 gem 'kaminari'
+gem 'sunspot_rails', '~> 1.3.0'
+gem 'sunspot_solr'
 
 # Gems used only for assets and not required
 # in production environments by default.

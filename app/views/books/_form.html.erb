@@ -21,7 +21,8 @@
   <div class="control-group">
     <%= f.label :user_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :user_id, :value => current_user.employee,:class => 'number_field',:placeholder => "type user id" %>
+      <%= f.text_field :user_id, :value => current_user.employee,:class => 'number_field',:placeholder => "type user id" ,
+      :disabled => true  %>
     </div>
   </div>
   <div class="control-group">

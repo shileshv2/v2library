@@ -1,17 +1,22 @@
 V2library::Application.routes.draw do
+  root :to => "books#index"
   resources :settings
 
 
   resources :transactions
 
 
-  resources :books
+  resources :books do 
+    collection do
+      post :import
+    end
+  end
+
   get 'tags/:tag', to: 'articles#index', as: :tag
 
 
  devise_for :users
  resources :locations
- root :to => "books#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

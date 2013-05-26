@@ -3,12 +3,20 @@ class BooksController < ApplicationController
   # GET /books.json
   
   def index
-    @books = Book.search(params[:search])
+    if params[:search]
+        @search = Book.search do
+          fulltext params[:search]
+        end
+        @books = @search.results 
+    else
+        @books=Book.all
+    end
     if @books.class == Array
       @books = Kaminari.paginate_array(@books).page(params[:page]).per(5) 
     else
       @books = @books.page(params[:page]).per(5) 
     end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @books }
@@ -36,6 +44,13 @@ class BooksController < ApplicationController
       format.json { render json: @book }
     end
   end
+
+  
+  # import books
+  # def import
+  #    Book.import(params[:file])
+  #   redirect_to root_url, notice: "Books imported"
+  # end
 
   # GET /books/1/edit
   def edit
