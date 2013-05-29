@@ -1,7 +1,7 @@
 v2library
 =========
 
-Books management tool for V2solutions 
+Books management tool for V2solutions.
 
 ------------
 v2solutions Bangalore 
