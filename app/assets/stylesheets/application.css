@@ -12,14 +12,13 @@
  *= require_tree .
  */
 
-.ui-datepicker {
-	height: 200px ;
-    padding: 0.2em 0.2em 0;
-    width: 200px;
-	background: #555;
-   border: 1px solid #555;
-   color: #EEE;
- }
+
+ .ui-datepicker {
+
+  background: #555;
+  }
+
+
  .ui-datepicker-month
  {
  	width: 100px;
