@@ -1,8 +1,13 @@
 <%= form_for @transaction, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :book_id, :class => 'control-label' %>
+
     <div class="controls">
-      <%= f.text_field :book_id, :value => params[:book_id],:class => 'number_field' ,:disabled => true%>
+      <% if @transaction.present? %>
+      <%= f.text_field :book_id, :value => @transaction.book_id,:class => 'number_field' ,:readonly => true %>
+        <% else %>
+      <%= f.text_field :book_id, :value => params[:book_id],:class => 'number_field' ,:readonly => true %> 
+        <%end%>
     </div>
   </div>
   <div class="control-group">
@@ -11,15 +16,12 @@
       <%= f.text_field :employee, :class => 'number_field',:placeholder => "type employee id" %>
     </div>
   </div>
-
   <div class="control-group">
     <%= f.label :employee_name, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :employee_name, :class => 'text_field', :placeholder => "type employee name" %>
     </div>
   </div>
-
-
   <div class="control-group">
     <%= f.label :employee_email, :class => 'control-label' %>
     <div class="controls">
@@ -29,7 +31,7 @@
   <div class="control-group">
     <%= f.label :user_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :user_id, :value => current_user.employee, :class => 'number_field' ,:disabled => true %>
+      <%= f.text_field :user_id, :value => current_user.employee, :class => 'number_field' ,:readonly => true %>
     </div>
   </div>
   <div class="control-group">
